@@ -1,0 +1,363 @@
+@charset "UTF-8";
+html {
+  font-size: 100%;
+}
+
+body {
+  color: #333;
+  font-size: 0.875rem;
+  min-height: 100vh;
+  position: relative;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+img {
+  max-width: 100%;
+}
+
+li {
+  list-style: none;
+}
+/*
+コンテンツ幅を設定するための共通クラス
+// // */
+.wrapper {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.content {
+  padding-top: 120px;
+  padding-bottom: 160px;
+}
+
+.site-title a {
+  width: 180px;
+  display: block;
+  line-height: 1px;
+}
+
+.page-title {
+  font-size: 0.875rem;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+// // -----------------------------------------
+// // ヘッダー
+// // -----------------------------------------
+
+#header {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10
+}
+
+
+// // ---------------------------------------
+// // ハンバーガーメニュー
+// // メニューが閉じている時は、「left: -300px;」で画面左に隠し、
+// // 「opacity: 0;」で非表示にしている
+// // ----------------------------------------
+#navi {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  color: #fff;
+  padding: 36px 50px;
+  transition: all 0.5s;
+  z-index: 20;
+  opacity: 0;
+
+  a {
+    color: #fff;
+  }
+
+  li {
+    margin-bottom: 14px;
+  }
+}
+ 
+// // ---------------------------
+// // ハンバーガーメニュー
+// // -------------------------
+.show #navi{
+  left: 0;
+  opacity: 1;
+}
+
+.toggle_btn {
+  width: 30px;
+  height: 30px;
+  // position指定はz-indexを指定するためと、spanのposition:absoluteの親要素だから
+  position: relative;
+  transition: all 0.5s;
+  cursor: pointer;
+  z-index: 20;
+}
+// // --------------------------
+// // ハンバーガーメニューの線の設定
+// // メニューが閉じている時
+// // --------------------------
+.toggle_btn span {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: #333;
+  border-radius: 4px;
+  transition: all 0.5s;
+}
+// /*
+// 1本目の線の位置を設定
+// */
+.toggle_btn span:nth-child(1) {
+  top: 10px;
+}
+// /*
+// 2本目の線の位置を設定
+// */
+.toggle_btn span:nth-child(2) {
+  bottom: 10px;
+}
+// /*
+// ハンバーガーメニューの線の設定（メニューが開いている時）
+// 線の色を白に変更
+// */
+.show .toggle_btn span {
+  background-color: #fff;
+}
+// /*
+// 1本目の線を-45度回転
+// */
+.show .toggle_btn span:nth-child(1) {
+  -webkit-transform: translateY(4px) rotate(-45deg);
+  transform: translateY(4px) rotate(-45deg);
+}
+/*
+// 2本目の線を45度回転
+// */
+.show .toggle_btn span:nth-child(2) {
+  -webkit-transform: translateY(-4px) rotate(45deg);
+  transform: translateY(-4px) rotate(45deg);
+}
+#mask {
+  display: none;
+  transition: all 0.5s;
+}
+// /*
+// メニューを開いている時は、全体を黒背景にする
+// */
+.show #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .8;
+  z-index: 10;
+  cursor: pointer;
+}
+
+// -------------------------
+// TOP,PRODUCTS
+// -------------------------
+#top {
+  padding-top: 80px;
+  padding-bottom: 160px;
+}
+
+.product-list {
+  li {
+    margin-bottom: 40px;
+  }
+// ----------------
+// gridの場合
+// ----------------   
+
+  display: grid;
+  grid-template-columns:(23% 23% 23% 23%);
+  grid-template-rows: (1fr 1fr);
+  gap:0% 2.6% ;
+
+  img {
+    margin-bottom: 10px;
+    vertical-align: top;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+  
+// ----------------
+// flexの場合
+// ---------------- 
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+
+    // li {
+    //   width: 23%;
+    //   margin-bottom: 40px;
+    // }
+
+    // img {
+    //   margin-bottom: 10px;
+    //   vertical-align: top;
+    // }
+}
+
+.link-text {
+  display: block;
+  text-align: center;
+  padding-top:40;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  li {
+    padding: 0 20px;
+  }
+}
+// --------------------------------
+// ITEM
+// --------------------------------
+#item {
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+
+  .item-img {
+    width: 50%;
+  }
+  .item-text {
+    width:42%;
+
+    p {
+      margin-bottom: 30px;
+      text-align: justify;
+    }
+
+    dl {
+      display: flex;
+      flex-wrap: wrap;
+
+      dt {
+        width:  30%;
+      }
+      dd {
+        width: 70%;
+      }
+    }
+  }
+}
+// --------------------------------
+// ABOUT
+// --------------------------------
+#about {
+  max-width: 600px;
+
+  p {
+    line-height: 1.9;
+    margin-bottom: 30px;
+  }
+}
+
+// --------------------------------
+// COMPANY
+// --------------------------------
+#company {
+  max-width: 600px;
+
+  dl {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  dt {
+    width: 30%;
+    border-bottom: 1px solid #dcdbdb;
+    padding: 20px 10px;
+  }
+  dd {
+    width: 70%;
+    border-bottom: 1px solid #dcdbdb;
+    padding: 20px 10px;
+  }
+
+  dt:last-of-type {
+    border-bottom: none;
+  }
+  dd:last-of-type {
+    border-bottom: none;
+  }
+  .map {
+    filter: grayscale(1);
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+  }
+}
+// -----------------------------
+// フッター
+// -----------------------------
+#footer {
+  display: flex;
+  justify-content: space-between;
+  position:absolute;
+  bottom:20px ;
+  left: 0;
+  right:0;
+  padding-top: 60px;
+
+  .menu {
+  display: flex;
+
+    li {
+      font-size: 0.75rem;
+      margin-right: 30px;
+    }
+  }
+
+  .copyright {
+    font-size: 0.625rem;
+  }
+}
+// -------------------
+// sp
+// --------------------
+@media screen and (max-width: 900px) {
+  // --------------------------
+  // TOP,PRODUCTS
+  // ---------------------------
+  .producu-list li {
+    grid-template-columns:47% 47%;
+  }
+}
+
